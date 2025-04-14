@@ -1,0 +1,31 @@
+Title: Code Explanation – smart-led-blinker.ino
+
+This Arduino project uses the TimerOne library to blink an LED every 0.5 seconds using a hardware timer and an interrupt.
+
+Libraries Used:
+- TimerOne by Paul Stoffregen
+
+Pin Used:
+- Pin 13 (connected to both the built-in LED and an external LED in the Wokwi simulation)
+
+Code Breakdown:
+
+1. #include <TimerOne.h>
+   - Includes the TimerOne library for easy hardware timer setup.
+
+2. const int ledPin = 13;
+   - Declares a constant for pin 13 to control the LED.
+
+3. void blinkLED()
+   - This function is called automatically by the timer interrupt.
+   - It toggles the LED ON/OFF by checking its current state and inverting it.
+
+4. void setup()
+   - pinMode(ledPin, OUTPUT): sets pin 13 as an output pin.
+   - Timer1.initialize(500000): initializes Timer1 with a 0.5 second interval (500,000 microseconds).
+   - Timer1.attachInterrupt(blinkLED): tells the timer to call blinkLED() every time the interval passes.
+
+5. void loop()
+   - Empty, because the timer and interrupt handle everything automatically.
+
+This approach uses hardware timers instead of the delay() function, which keeps the main loop free and makes the code more efficient and non-blocking.
